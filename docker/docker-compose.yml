@@ -1,0 +1,16 @@
+version: '2.1'
+x-common: &common
+  image: ${DOCKER_IMAGE_TAG}
+  environment: &commont-env
+    JWT_VALIDATE: 'False'
+  mem_limit: 2G
+  restart: always
+
+services:
+  prompt-chain:
+    <<: *common
+    container_name: my-appstore
+    ports:
+      - 3001:3000
+    environment:
+      <<: *commont-env
