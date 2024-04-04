@@ -22,7 +22,7 @@ echo ${cmd}
 eval ${cmd}
 
 cmd="docker push ${IMAGE_NAME}"
-eval ${cmd}
+# eval ${cmd}
 
 echo ${IMAGE_NAME}
 

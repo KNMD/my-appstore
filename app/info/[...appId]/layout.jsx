@@ -1,12 +1,5 @@
 
-import Navbar from "../components/navbar";
-
-
-
-export const metadata = {
-  title: "apps",
-  description: "my apps",
-};
+import Navbar from "../../components/navbar";
 
 export default function AppsLayout({
   children,

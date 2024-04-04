@@ -10,7 +10,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
     }
   });
   
-module.exports = withPWA({
+module.exports = {
 // Your Next.js config
     output: 'standalone'
-});
+};

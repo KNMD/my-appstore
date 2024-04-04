@@ -1,66 +1,36 @@
 
-'use client'
-import appApi from "@/requests/app";
-import { useEffect, useState } from "react";
-import TablerIcon from "../components/tabler";
-let deferredPrompt = null;
+import Script from 'next/script'
+
+import TablerIcon from "../../components/tabler";
+
+import {getAppData} from '@/requests/appData'
+
+export async function generateMetadata({ params }) {
+  const appData = await getAppData(params.appId[0])
+
+  return {
+      title: appData.name,
+      description: appData.ext.description
+  }
+}
 
 
-
-
-
-export default function Apps() {
-  const [appData, setAppData] = useState()
+export default async function Apps({ params }) {
+  // const [appData, setAppData] = useState()
   // const [isInstall, setIsInstall] = useState(true)
-  const [deferredPrompt, setDeferredPrompt] = useState(null)
-  const [isStandalone, setStandalone] = useState(false)
+  // const [deferredPrompt, setDeferredPrompt] = useState(null)
+  // const [isStandalone, setStandalone] = useState(false)
 
 
-  const initial = () => {
-    console.log("inital")
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e)
-      console.log("beforeinstallprompt: ", e)
-      // setIsInstall(false)
-    })
-
-    // if (window.matchMedia('(display-mode: standalone)').matches) {
-    //   setStandalone(true)
-    // } else {
-    //   setStandalone(false)
-    // }
-    const handleAppInstalled = (e) => {
-      setStandalone(true)
-    };
+  const appData = await getAppData(params.appId[0])
   
-    window.addEventListener('appinstalled', handleAppInstalled);
-  }
-  const isInstall = () => {
-    return isStandalone || deferredPrompt == null
-  }
-  const getData = async () => {
-    const res = await appApi.getApp()
-    console.log("app data: ", res)
-    setAppData(res)
-  }
-  const install = () => {
-    console.log("click install deferredPrompt: ", deferredPrompt)
-    if(deferredPrompt != null) {
-      deferredPrompt.prompt()
-    }
-  }
-  useEffect(() => {
-    getData()
-    initial()
-  }, [])
+  
   return (
-    appData && 
     <div className="p-5">
       <div className="flex">
         <div className="logo shadow-md w-20 h-20 rounded-lg mr-5">
           <img
-            src={appData.icons[1].src}
+            src={appData.ext.remote_icon}
             alt="app"
             className="w-full h-full"
           />
@@ -78,7 +48,7 @@ export default function Apps() {
         appData.ext.labels.map((item, index) => (
           <div key={index}>
             <p className={"flex justify-center font-bold "}>
-              <div className={"mr-2 p-1 rounded " + (item.wrapper && " bg-slate-300")}>{item.display}</div> 
+              <span className={"mr-2 p-1 rounded block" + (item.wrapper && " bg-slate-300")}>{item.display}</span> 
               {item.icon && <TablerIcon iconName={item.icon} size="18" className="mt-2" />}
             </p>
             <p className="second-color text-xs">{item.name}</p>
@@ -87,7 +57,7 @@ export default function Apps() {
       }
       </div>
       <div className="install">
-        <button className="bg-primary rounded text-white w-full p-2" onClick={install}>{isInstall() ? 'Play' : 'Install'}</button>
+        <button className="bg-primary rounded text-white w-full p-2">Download</button>
       </div>
       <div className="links text-center flex justify-center mt-5 space-x-5">
       {
@@ -122,7 +92,7 @@ export default function Apps() {
         ))      
       }
       </div>
-      
+      <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />
     </div>
   );
 }

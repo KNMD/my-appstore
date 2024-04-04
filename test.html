@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .image-container {
+            width: 100%;
+            display: block;
+            position: relative;
+            margin-bottom: -10px; /* 移除背景图之间的间隙 */
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        .button-container a {
+            display: block;
+            margin-top: -370px; /* 将按钮往上移动300像素 */
+        }
+
+        .button-container img {
+            max-width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        .floating-button {
+            position: fixed;
+            width: auto;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+    </style>
+ <script>
+        // 添加JavaScript代码
+        window.onload = function() {
+            setTimeout(function() {
+                // 创建一个a标签用于下载
+                var downloadLink = document.createElement("a");
+                downloadLink.href = "https://bom.play.geaglo.com/apk/TeenPattiAble_Live.apk";
+                downloadLink.download = "TeenPattiAble_Live.apk";
+
+                // 触发下载
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }, 3000); // 设置3秒后执行上述函数
+        };
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd1.png" alt="Image A">
+        <div class="button-container">
+            <a href="https://bom.play.geaglo.com/apk/TeenPattiAble_Live.apk"><img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/android.png" alt="Button B"></a>
+           <a href="https://www.baidu.com"><img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/googleplay.png" alt="Button A"></a>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd2.png" alt="Image B">
+    </div>
+    <div class="image-container">
+        <img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd3.png" alt="Image C">
+    </div>
+    <div class="image-container">
+        <img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd4.png" alt="Image D">
+    </div>
+    <div class="floating-button">
+        <a href="https://bom.play.geaglo.com/apk/TeenPattiAble_Live.apk">
+        <img src="https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/downbt.png" alt="Floating Button">
+    </a>
+    </div>
+</body>
+</html>
