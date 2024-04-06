@@ -82,7 +82,18 @@ const defaultAppData = {
                 "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd3.png",
                 "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd4.png"
             ]
-        }
+        },
+        "comments ": [{
+            "user": "",
+            "avatar": "",
+            "content": ""
+        }],
+        "profile": {
+            "user_nick": "abc"
+        },
+        "pop_inverval": {"min": 5, "max": 10},
+        "comment_inverval": {"min": 5, "max": 10},
+        
     }
 }
 
