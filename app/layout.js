@@ -1,6 +1,6 @@
 
 import "./globals.css";
-
+import { Providers } from "./providers";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -10,9 +10,15 @@ import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-    
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+      </head>
+      <body>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+          {children}
+        </Providers>
+       </body>
     </html>
   );
 }
