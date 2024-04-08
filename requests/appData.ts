@@ -93,7 +93,7 @@ const defaultAppData = {
         },
         "pop_inverval": {"min": 5, "max": 10},
         "comment_inverval": {"min": 5, "max": 10},
-        
+
     }
 }
 
@@ -106,6 +106,7 @@ export async function getAppData(appId) {
     const revalidate = parseInt(process.env.NEXT_PUBLIC_APP_CACHE, 10)
     const urlPattern = process.env.NEXT_PUBLIC_RESOURCE_URL_PATTERN
     const url = urlPattern.replace("{appId}", appId)
+    console.log("request manifest url: ", url)
     try {
         const res = await fetch(url, { cache: 'force-cache', next: { revalidate: revalidate } });
         if(!res.ok) {
