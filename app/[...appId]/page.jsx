@@ -22,7 +22,7 @@ export default async function AppLanding({ params }) {
                     <a href={appData.ext.download}>
                         <img src="/android.png" alt="Button B" />
                     </a>
-                    <a href={appData.ext.download}>
+                    <a href={`/info/${params.appId[0]}`}>
                         <img src="/googleplay.png" alt="Button A" />
                     </a>
                 </div>
