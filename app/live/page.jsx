@@ -70,6 +70,16 @@ export default function LivePage() {
     });
   }
 
+  // download 动画
+  const [showDownload, setshowDownload] = useState(false)
+  const [showDwnloadNumber, setShowDwnloadNumber] = useState(false)
+  useEffect(() => { 
+    setTimeout(() => {
+      setshowDownload(true)
+      setTimeout(() => setShowDwnloadNumber(true), 100)
+    }, 1000);
+  },[])
+
   // 监听窗口大小 处理浏览器兼容
   const page = useRef(null)
   const resize = () => {
@@ -120,7 +130,6 @@ export default function LivePage() {
             <Image onClick={() => changeVideoState(false)} src='/muted.png' width={30} height={30} alt='muted'></Image>:
             <Image onClick={() => changeVideoState(true)} src='/voice.png' width={30} height={30} alt='voice'></Image>
           }
-          
         </div>
       </div>
       <div className="flex-1 overflow-auto relative">
@@ -134,10 +143,11 @@ export default function LivePage() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="max-w-[350px] h-[45px] bg-white rounded-full flex items-center pl-[6px] pr-[20px] text-[14px]">
+            <div className="bg-gradient-to-r from-[rgba(120,120,255,1)] to-[rgba(83,147,227,0.7)]
+              max-w-[350px] h-[45px] rounded-full flex items-center pl-[6px] pr-[20px] text-[14px]">
               <Avatar className="w-[36px] h-[36px]" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-              <div className="ml-2">
-                <span className="text-[#aaa]">{ currentEnterUser?.name }</span>
+              <div className="ml-2 text-white">
+                <span className="text-[#f0d67f]">{ currentEnterUser?.name }</span>
                 <span className="ml-2">Enter the live broadcast room</span>
               </div>
             </div>
@@ -161,20 +171,33 @@ export default function LivePage() {
           <input type="text" placeholder="Say Somethings ..." className="outline-none px-[15px]
             w-full bg-[#201c1b] h-[50px] rounded-full text-[16px] text-white"/>
         </div>
-        <div className="bottom-[80px] absolute right-[15px]">
-          <div className=" bg-gradient-to-r from-[rgba(233,149,59,1)] to-[rgba(233,149,59,0)]
-          rounded-full h-[40px] text-[#fff] flex items-center justify-center text-[13px] mb-[10px]">
-            567 Download
-          </div>
-          <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
-            {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
-            <Avatar className='w-[80px] h-[80px]' radius="md" src="/app-icon.png" />
-            <div className="mt-1">AK777</div>
-            <div className="text-[11px]">Wining Grand</div>
-            <div className="text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
-          </div>
-        </div>
-        {/* <button className="mt-[100px]" onClick={() => setIsShowing((isShowing) => !isShowing)}>
+          
+            <div className="bottom-[80px] absolute right-[15px]">
+              {
+                showDwnloadNumber && <div className="bg-gradient-to-r from-[rgba(233,149,59,1)] to-[rgba(233,149,59,0)]
+                rounded-full h-[40px] text-[#fff] flex items-center justify-center text-[13px] mb-[10px]">
+                  567 Download
+                </div>
+              }
+              <Transition
+                show={showDownload}
+                enter="transition-all origin-bottom-right scale-0 duration-[300ms]"
+                enterFrom="scale-0 opacity-0"
+                enterTo="scale-100	opacity-100"
+                leave="transition-all origin-bottom-right scale-100 duration-[300ms]"
+                leaveFrom="scale-100	opacity-100"
+                leaveTo="scale-0	opacity-0"
+              >
+                <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
+                  {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
+                  <Avatar className='w-[80px] h-[80px]' radius="md" src="/app-icon.png" />
+                  <div className="mt-1">AK777</div>
+                  <div className="text-[11px]">Wining Grand</div>
+                  <div className="text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
+                </div>
+              </Transition>
+            </div>
+        {/* <button className="mt-[100px]" onClick={() => setshowDownload((isShowing) => !isShowing)}>
           Toggle
         </button> */}
       </div>
