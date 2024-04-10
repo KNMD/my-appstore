@@ -171,32 +171,32 @@ export default function LivePage() {
           <input type="text" placeholder="Say Somethings ..." className="outline-none px-[15px]
             w-full bg-[#201c1b] h-[50px] rounded-full text-[16px] text-white"/>
         </div>
-          
-            <div className="bottom-[80px] absolute right-[15px]">
-              {
-                showDwnloadNumber && <div className="bg-gradient-to-r from-[rgba(233,149,59,1)] to-[rgba(233,149,59,0)]
-                rounded-full h-[40px] text-[#fff] flex items-center justify-center text-[13px] mb-[10px]">
-                  567 Download
-                </div>
-              }
-              <Transition
-                show={showDownload}
-                enter="transition-all origin-bottom-right scale-0 duration-[300ms]"
-                enterFrom="scale-0 opacity-0"
-                enterTo="scale-100	opacity-100"
-                leave="transition-all origin-bottom-right scale-100 duration-[300ms]"
-                leaveFrom="scale-100	opacity-100"
-                leaveTo="scale-0	opacity-0"
-              >
-                <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
-                  {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
-                  <Avatar className='w-[80px] h-[80px]' radius="md" src="/app-icon.png" />
-                  <div className="mt-1">AK777</div>
-                  <div className="text-[11px]">Wining Grand</div>
-                  <div className="text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
-                </div>
-              </Transition>
+        <div className="bottom-[80px] absolute right-[15px]">
+          {
+            showDwnloadNumber && <div className="bg-gradient-to-r from-[rgba(233,149,59,1)] to-[rgba(233,149,59,0)]
+            rounded-full h-[40px] text-[#fff] flex items-center justify-center text-[13px] mb-[10px]">
+              <Avatar src="/fire.svg" className="bg-[transparent] w-[23px] h-[23px]"/>
+              <span className="ml-[2px]">567 Download</span>
             </div>
+          }
+          <Transition
+            show={showDownload}
+            enter="transition-all origin-bottom-right scale-0 duration-[300ms]"
+            enterFrom="scale-0 opacity-0"
+            enterTo="scale-100	opacity-100"
+            leave="transition-all origin-bottom-right scale-100 duration-[300ms]"
+            leaveFrom="scale-100	opacity-100"
+            leaveTo="scale-0	opacity-0"
+          >
+            <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
+              {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
+              <Avatar className='w-[80px] h-[80px]' radius="md" src="/app-icon.png" />
+              <div className="mt-1">AK777</div>
+              <div className="text-[11px]">Wining Grand</div>
+              <div className="text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
+            </div>
+          </Transition>
+        </div>
         {/* <button className="mt-[100px]" onClick={() => setshowDownload((isShowing) => !isShowing)}>
           Toggle
         </button> */}
