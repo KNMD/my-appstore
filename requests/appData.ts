@@ -52,11 +52,11 @@ const defaultAppData = {
             "icon": "TbShoppingCartPlus",
             "text": "Add to wishlist"
         }],
+        "vertical_rect": {"w": "120px", "h": "200px"},
+        "landscape_rect": {"w": "200px", "h": "113px"},
         "pictures": [{
             "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/lbd1.png",
             "alt": "aaa",
-            "width": "126",
-            "height": "224"
         },{
             "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/lbd2.png",
             "alt": "aaa"
@@ -68,6 +68,22 @@ const defaultAppData = {
             "alt": "aaa"
         },{
             "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/lbd5.png",
+            "alt": "aaa"
+        }],
+        "landscape": [{
+            "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/app/6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0/%E5%9B%BE1.png",
+            "alt": "aaa"
+        },{
+            "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/app/6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0/%E5%9B%BE2.png",
+            "alt": "aaa"
+        },{
+            "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/app/6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0/%E5%9B%BE3.png",
+            "alt": "aaa"
+        },{
+            "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/app/6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0/%E5%9B%BE4.png",
+            "alt": "aaa"
+        },{
+            "url": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/app/6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0/%E5%9B%BE5.png",
             "alt": "aaa"
         }],
         "sections": [{
