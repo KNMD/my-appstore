@@ -105,6 +105,7 @@ export default function LivePage() {
     if (event.key === "Enter") {
       userUserComment(userInput)
       setUserInput("")
+      event.target.blur()
     }
   }
   function userUserComment(msg) {
