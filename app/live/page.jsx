@@ -2,9 +2,8 @@
 import { Avatar, Image } from "@nextui-org/react"
 import { useEffect, useState, useRef } from 'react';
 import { Transition } from '@headlessui/react'
-
+import users from "./users.json"
 export default function LivePage() {
-
   // video muted 切换
   const video = useRef(null)
   useEffect(() => {
@@ -15,7 +14,6 @@ export default function LivePage() {
     setIsMuted(state)
     video.current.muted = state
   }
-
   // 用户进入房间popup
   const [isShowing, setIsShowing] = useState(false)
   const [enterList, setEnterList] = useState([])
@@ -43,12 +41,15 @@ export default function LivePage() {
       setIsShowing(false)
     }, 2000)
   }
-
   // 处理chat
+  const fullUsers = useRef(users)
   const [chatList, setChatList] = useState([])
   useEffect(() => {
+    setChatList(fullUsers.current.splice(0, 10))
     const interval = setInterval(() => {
+      const user = fullUsers.current.shift()
       setChatList((chatList) => [...chatList, {
+        avatarUrl: user.avatarUrl,
         msg: 'Hello Hello'
       }])
     }, 2000)
@@ -93,6 +94,10 @@ export default function LivePage() {
     return () => {
       window.removeEventListener('resize', resize)
     }
+  }, [])
+
+  
+  useEffect(() => {
   }, [])
 
   return (
@@ -158,7 +163,7 @@ export default function LivePage() {
             chatList.map((item, index) => {
               return (
                 <div key={index} className="mb-[10px] flex">
-                  <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+                  <Avatar src={ item.avatarUrl } className="w-[34px] h-[34px]"/>
                   <div className="bg-[#2e3e4e] flex-1 break-all text-white ml-2 p-2 rounded-lg">
                     { item.msg }
                   </div>
