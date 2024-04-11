@@ -2,10 +2,11 @@
 import { Avatar, Image } from "@nextui-org/react"
 import { useEffect, useState, useRef } from 'react';
 import { Transition } from '@headlessui/react'
-import users from "./users.json"
+// import users from "./users.json"
 import { getAppData } from "@/requests/appData"
 
-export default function LivePage() {
+
+export default function LivePage({ params }) {
   // 取随机数
   function randomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -22,12 +23,17 @@ export default function LivePage() {
   }
   const [appData, setAppData] = useState(null)
   const [roomUsersCount, setRoomUsersCount] = useState(0)
+  const [fullUsers, setFullUsers] = useState([])
   useEffect(() => {
     // test 6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0
-    getAppData().then((appDataSync) => {
-      console.error("appDataSync", appDataSync)
+    
+    const appId = params.appId[0]; 
+    
+    getAppData(appId).then((appDataSync) => {
+      // console.error("appDataSync", appDataSync)
       setAppData(appDataSync)
       setRoomUsersCount(appDataSync.ext.roomUsersCount)
+      setFullUsers(appDataSync.ext.users)
     })
   }, [])
   // video muted 切换
@@ -52,7 +58,7 @@ export default function LivePage() {
   function pushPopUpUser() {
     const randomTime = getPopupTimeRandom()
     setTimeout(() => {
-      const randomUser = users[randomIntInclusive(0, users.length - 1)]
+      const randomUser = fullUsers[randomIntInclusive(0, fullUsers.length - 1)]
       setEnterList((enterList) => [...enterList, {
         avatarUrl: randomUser?.avatarUrl,
         name: randomUser?.nickname || 'H***'
@@ -76,12 +82,12 @@ export default function LivePage() {
     }, 3000)
   }
   // 处理chat
-  const fullUsers = useRef(JSON.parse(JSON.stringify(users)))
+  
   let userIndex = 10
   const [chatList, setChatList] = useState([])
   useEffect(() => {
     if(appData) {
-      setChatList(fullUsers.current.slice(0, 10).map(item => {
+      setChatList(fullUsers.slice(0, 10).map(item => {
         item.msg = getRandomComment()
         return item
       }))
@@ -91,9 +97,11 @@ export default function LivePage() {
   function pushUserComment() {
     const randomTime = getChatTimeRandom()
     setTimeout(() => {
-      const user = fullUsers.current[userIndex % users.length]
+      
+      const user = fullUsers[userIndex % appData.ext.users.length]
       userIndex ++
       // const randomComments = appData.ext.comments
+      // console.log("user: ", appData.ext.users.length)
       setChatList((chatList) => [...chatList, {
         avatarUrl: user.avatarUrl,
         msg: getRandomComment()
@@ -258,9 +266,9 @@ export default function LivePage() {
           >
             <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
               {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
-              <Avatar className='w-[80px] h-[80px]' radius="md" src="/app-icon.png" />
-              <div className="mt-1">AK777</div>
-              <div className="text-[11px]">Wining Grand</div>
+              <Avatar className='w-[80px] h-[80px]' radius="md" src={appData?.ext.remote_icon} />
+              <div className="mt-1">{appData?.name}</div>
+              <div className="text-[11px]">{appData?.ext.company}</div>
               <div onClick={ downloadApk } className="active:opacity-70 text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
             </div>
           </Transition>
