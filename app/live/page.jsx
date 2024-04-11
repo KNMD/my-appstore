@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Image, User } from "@nextui-org/react"
+import { Avatar, Image } from "@nextui-org/react"
 import { useEffect, useState, useRef } from 'react';
 import { Transition } from '@headlessui/react'
 import users from "./users.json"
@@ -23,7 +23,7 @@ export default function LivePage() {
   const [appData, setAppData] = useState(null)
   const [roomUsersCount, setRoomUsersCount] = useState(0)
   useEffect(() => {
-    getAppData().then((appDataSync) => {
+    getAppData('6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0').then((appDataSync) => {
       console.error("appDataSync", appDataSync)
       setAppData(appDataSync)
       setRoomUsersCount(appDataSync.ext.roomUsersCount)
@@ -122,7 +122,6 @@ export default function LivePage() {
 
   function smoothScrollToBottom() {
     const scrollableElement = document.getElementById('scrollable-content');
-    console.error("scrollableElement.scrollTop", scrollableElement.scrollTop, scrollableElement.scrollHeight)
     scrollableElement?.scrollTo({
       behavior: 'smooth',
       top: scrollableElement.scrollHeight
