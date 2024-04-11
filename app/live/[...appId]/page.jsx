@@ -197,7 +197,7 @@ export default function LivePage({ params }) {
           muted
           loop
           playsInline
-          src="/test.mp4"
+          src={appData?.ext.video_url}
         >
         </video>
         <div className="absolute bottom-[10px] left-[20px]">

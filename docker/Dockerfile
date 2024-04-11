@@ -13,10 +13,10 @@ FROM base AS deps
 WORKDIR /app
 
 # # Install dependencies based on the preferred package manager
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json package-lock.json pnpm-lock.yaml* ./
 # RUN yarn global add pnpm 
 # RUN npm i pnpm -g
-RUN npm install;
+RUN npm i;
 
 
 # # Rebuild the source code only when needed
@@ -30,7 +30,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 
-RUN pnpm run build
+RUN npm run build
 
 
 # # Production image, copy all the files and run next
