@@ -23,7 +23,8 @@ export default function LivePage() {
   const [appData, setAppData] = useState(null)
   const [roomUsersCount, setRoomUsersCount] = useState(0)
   useEffect(() => {
-    getAppData('6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0').then((appDataSync) => {
+    // test 6754f7a8b9c0d1e2f3a4b5c6d7e8f9a0
+    getAppData().then((appDataSync) => {
       console.error("appDataSync", appDataSync)
       setAppData(appDataSync)
       setRoomUsersCount(appDataSync.ext.roomUsersCount)
