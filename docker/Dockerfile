@@ -15,8 +15,8 @@ WORKDIR /app
 # # Install dependencies based on the preferred package manager
 COPY package.json pnpm-lock.yaml* ./
 # RUN yarn global add pnpm 
-RUN npm i pnpm -g
-RUN pnpm i --frozen-lockfile;
+# RUN npm i pnpm -g
+RUN npm install;
 
 
 # # Rebuild the source code only when needed
