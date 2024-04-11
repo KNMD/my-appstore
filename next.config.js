@@ -12,5 +12,14 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   
 module.exports = {
 // Your Next.js config
-    output: 'standalone'
+    output: 'standalone',
+    async rewrites() {
+      console.error(process.env.NEXT_PUBLIC_RESOURCE_DOMAIN)
+      return [
+        {
+          source: '/configs/:path*',
+          destination: process.env.NEXT_PUBLIC_RESOURCE_DOMAIN + '/:path*',
+        }
+      ]
+  },
 };

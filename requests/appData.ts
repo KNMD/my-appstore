@@ -91,6 +91,7 @@ const defaultAppData = {
             "description": "Entre no emocionante mundo do Pjogo.com - 777 PJOGO! Este jogo de cassino oferece uma variedade de máquinas caça-níqueis temáticas e desafios emocionantes para jogadores de todos os níveis. Gire os rolos, acumule prêmios e desbloqueie recursos especiais enquanto busca grandes vitórias. Com gráficos vibrantes e jackpots empolgantes, este é o seu caminho para a diversão e riqueza. Baixe agora e comece a apostar com o 777 PJOGO! \n\n 1.   Primeiro depósito de R$20 ou mais recebe um bônus de 200%, com um bônus máximo de R$ 2000.\n 2.    Faça o download do aplicativo oficial e ganhe R$ 9.\n 3.    Jogue a roleta de dinheiro gratuita e ganhe R$ 100. Compartilhe com amigos para se tornar um agente e desfrute de uma comissão máxima de 2,6%.\n 4.    Receba red envelopes gratuitos todos os dias, totalizando R$ 100.000, com até 6 oportunidades por dia e um prêmio máximo de R$ 7777.\n 5.   Siga o Pjogo.com PGTaDa.com no Instagram, Telegram e receba envelopes vermelhos de eventos no valor de R$ 2 todos os dias.\n 6.    Reembolsamos o valor das perdas dos novos jogadores todas as segundas-feiras, com um reembolso máximo de R$ 10000."
         }],
         "download": "https://ak777-public.s3.ap-south-1.amazonaws.com/apk/ak777game.apk",
+        "downloadNumber": 566, 
         "landing": {
             "backgrounds": [
                 "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd1.png",
@@ -99,17 +100,41 @@ const defaultAppData = {
                 "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd4.png"
             ]
         },
-        "comments ": [{
-            "user": "",
-            "avatar": "",
-            "content": ""
-        }],
-        "profile": {
-            "user_nick": "abc"
+        "liveRoomInfo": {
+            "follows": 8092,
+            "nickname": "Jerry Wang",
+            "avatarUrl": "https://wx.qlogo.cn/mmhead/Q3auHgzwzM5e7zoGwzbStibbUYEyvzA1M5Aa9K2tdcribjaxV7B8C5GQ/0/132"
         },
-        "pop_inverval": {"min": 5, "max": 10},
-        "comment_inverval": {"min": 5, "max": 10},
-
+        "roomUsers": [
+            {
+                "nickname": "鸟啊鸟",
+                "avatarUrl": "https://wx.qlogo.cn/mmhead/edsOKzKA7IsHicWEMWibdudrqevbQ9ujA5s3yd690iayPw/0/132"
+            },
+            {
+                "nickname": "   ",
+                "avatarUrl": "https://wx.qlogo.cn/mmhead/trJZoMpSYgCXZgkMuPWxImIHkIcGYv5zAfvB3VWJA9s/0/132"
+            },
+            {
+                "nickname": "Kong",
+                "avatarUrl": "https://wx.qlogo.cn/mmhead/TMFbOuZjI762Yltz1ja9v66DVz8ObicfFUQl06SibMtvA/0/132"
+            },
+        ],
+        "commentUser": {
+            "nickname": "蜗牛侠 ",
+            "avatarUrl": "https://wx.qlogo.cn/mmhead/xRIo4kyKic7nAUyh0nGLkxrVWMdaL0JV25QciaqJ2C7PA/132"
+        },
+        "roomUsersCount": 88,
+        "pop_inverval": {"min": 3000, "max": 6000},
+        "comments": [
+            "Cool!", 
+            "666!!!", 
+            "What this game?", 
+            "Hurry up and seektreatment. He's dying",
+            "Fifth personality",
+            "Beautiful kill",
+            "Nice"
+        ],
+        "comment_inverval": {"min": 2000, "max": 5000},
     }
 }
 
