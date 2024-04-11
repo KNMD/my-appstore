@@ -1,7 +1,7 @@
 
 import Script from 'next/script'
 import TablerIcon from "../../components/tabler";
-
+import { makeDownloadURL } from '@/requests/utils'
 import {getAppData} from '@/requests/appData'
 
 export async function generateMetadata({ params }) {
@@ -25,7 +25,7 @@ export async function getQuery(context) {
   };
 }
 
-export default async function Apps({ params }) {
+export default async function Apps({ params, searchParams }) {
   // const [appData, setAppData] = useState()
   // const [isInstall, setIsInstall] = useState(true)
   // const [deferredPrompt, setDeferredPrompt] = useState(null)
@@ -75,7 +75,7 @@ export default async function Apps({ params }) {
       }
       </div>
       <div className="install">
-        <button className="bg-primary rounded text-white w-full p-2">Download</button>
+        <a className="bg-primary block rounded text-white w-full p-2 text-center" href={makeDownloadURL(searchParams, appData.ext.download)}>Download</a>
       </div>
       <div className="links text-center flex justify-center mt-5 space-x-5">
       {

@@ -90,7 +90,7 @@ const defaultAppData = {
             "label": "About this app",
             "description": "Entre no emocionante mundo do Pjogo.com - 777 PJOGO! Este jogo de cassino oferece uma variedade de máquinas caça-níqueis temáticas e desafios emocionantes para jogadores de todos os níveis. Gire os rolos, acumule prêmios e desbloqueie recursos especiais enquanto busca grandes vitórias. Com gráficos vibrantes e jackpots empolgantes, este é o seu caminho para a diversão e riqueza. Baixe agora e comece a apostar com o 777 PJOGO! \n\n 1.   Primeiro depósito de R$20 ou mais recebe um bônus de 200%, com um bônus máximo de R$ 2000.\n 2.    Faça o download do aplicativo oficial e ganhe R$ 9.\n 3.    Jogue a roleta de dinheiro gratuita e ganhe R$ 100. Compartilhe com amigos para se tornar um agente e desfrute de uma comissão máxima de 2,6%.\n 4.    Receba red envelopes gratuitos todos os dias, totalizando R$ 100.000, com até 6 oportunidades por dia e um prêmio máximo de R$ 7777.\n 5.   Siga o Pjogo.com PGTaDa.com no Instagram, Telegram e receba envelopes vermelhos de eventos no valor de R$ 2 todos os dias.\n 6.    Reembolsamos o valor das perdas dos novos jogadores todas as segundas-feiras, com um reembolso máximo de R$ 10000."
         }],
-        "download": "https://bom.play.geaglo.com/apk/TeenPattiAble_Live.apk",
+        "download": "https://ak777-public.s3.ap-south-1.amazonaws.com/apk/ak777game.apk",
         "landing": {
             "backgrounds": [
                 "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/bd1.png",
