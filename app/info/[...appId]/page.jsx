@@ -1,8 +1,7 @@
 
 import Script from 'next/script'
-
 import TablerIcon from "../../components/tabler";
-
+import { makeDownloadURL } from '@/requests/utils'
 import {getAppData} from '@/requests/appData'
 
 export async function generateMetadata({ params }) {
@@ -13,17 +12,36 @@ export async function generateMetadata({ params }) {
       description: appData.ext.description
   }
 }
+export async function getQuery(context) {
+  const { query } = context;
+  
+  console.log("query: ", query)
 
+  // 返回数据作为 props
+  return {
+    props: {
+      
+    }
+  };
+}
 
-export default async function Apps({ params }) {
+export default async function Apps({ params, searchParams }) {
   // const [appData, setAppData] = useState()
   // const [isInstall, setIsInstall] = useState(true)
   // const [deferredPrompt, setDeferredPrompt] = useState(null)
   // const [isStandalone, setStandalone] = useState(false)
-
-
-  const appData = await getAppData(params.appId[0])
+  const appIdPattern = !!params.appId[0] ? params.appId[0] : "1234"
+  let isLandscape = false
+  let appId = appIdPattern
+  if(appIdPattern.indexOf("land_") != -1) {
+    isLandscape = true
+    appId = appIdPattern.split("_")[1]
+  }
+  const appData = await getAppData(appId)
   
+  const pictures = isLandscape && !!appData.ext.landscape ? appData.ext.landscape : appData.ext.pictures
+  const rect = isLandscape && !!appData.ext.landscape ? appData.ext.landscape_rect : appData.ext.vertical_rect
+  console.log("pictures: {}", pictures)
   
   return (
     <div className="p-5">
@@ -57,7 +75,7 @@ export default async function Apps({ params }) {
       }
       </div>
       <div className="install">
-        <button className="bg-primary rounded text-white w-full p-2">Download</button>
+        <a className="bg-primary block rounded text-white w-full p-2 text-center" href={makeDownloadURL(searchParams, appData.ext.download)}>Download</a>
       </div>
       <div className="links text-center flex justify-center mt-5 space-x-5">
       {
@@ -74,11 +92,11 @@ export default async function Apps({ params }) {
       
       <div className="flex overflow-x-auto py-5">
       {
-        appData.ext.pictures.map((item, index) => (
+        pictures.map((item, index) => (
         // <div key={index} className="m-2 rounded overflow-hidden">
         //   <img src={item.url} />
         // </div>
-          <img key={index} src={item.url} alt={item.alt} style={{'width': '120px', 'height':'200px'}} className="rounded mr-2"/>
+          <img key={index} src={item.url} alt={item.alt} style={{'width': rect.w, 'height':rect.h}} className="rounded mr-2"/>
         ))      
       }
       </div>
@@ -96,3 +114,4 @@ export default async function Apps({ params }) {
     </div>
   );
 }
+
