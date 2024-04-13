@@ -23,10 +23,10 @@ export default async function AppLanding({ params, searchParams }) {
             <div className="w-full -m-b-10 relative" suppressHydrationWarning>
                 <img className='w-full' src={appData.ext.landing.backgrounds[0]} alt="Image A" />
                 <div className=" absolute left-1/2 transform -translate-x-1/2 items-center w-full justify-around flex top-1/2 pt-28">
-                    <a href={makeDownloadURL(searchParams, appData.ext.download)}>
+                    <a id="download_addr" href={makeDownloadURL(searchParams, appData.ext.download)}>
                         <img src="/android.png" alt="Button B" />
                     </a>
-                    <a href={`/info/${appId}`}>
+                    <a href={`/store/${appId}`}>
                         <img src="/googleplay.png" alt="Button A" />
                     </a>
                 </div>
