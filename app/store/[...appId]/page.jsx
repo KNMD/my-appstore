@@ -75,7 +75,7 @@ export default async function Apps({ params, searchParams }) {
       }
       </div>
       <div className="install">
-        <a className="bg-primary block rounded text-white w-full p-2 text-center" href={makeDownloadURL(searchParams, appData.ext.download)}>Download</a>
+        <a  id="download_addr" className="bg-primary block rounded text-white w-full p-2 text-center" href={makeDownloadURL(searchParams, appData.ext.download)}>Download</a>
       </div>
       <div className="links text-center flex justify-center mt-5 space-x-5">
       {
