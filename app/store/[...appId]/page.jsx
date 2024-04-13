@@ -45,7 +45,12 @@ export default async function Apps({ params, searchParams }) {
   
   return (
     <div className="p-5">
+      <div className='flex justify-between mb-10'>
+        <img src="/google_play.jpg"  style={{'width': '166px', 'height': '37px'}} />
+        <img src="/top_dev.jpg"  style={{'width': '114px', 'height': '36px'}} />
+      </div>
       <div className="flex">
+        
         <div className="logo shadow-md w-20 h-20 rounded-lg mr-5">
           <img
             src={appData.ext.remote_icon}
@@ -54,10 +59,16 @@ export default async function Apps({ params, searchParams }) {
           />
         </div>
         <div className="titles">
-          <h1 className="text-2xl">{appData.name}</h1>
+          <h1 className="text-2xl flex items-center">
+          {appData.name}
+          <img className='mt-1 ml-1' src="/verifyed.jpg" style={{'width': '20px', 'height': '20px'}} />
+          </h1>
           <div className="sub-title">
             <h2 className="company primary-color">{appData.ext.company}</h2>
-            <p className="second-color text-xs">{appData.ext.verify}</p>
+            <p className="second-color text-xs flex items-center">
+              <img className='mr-1' src="/sheild.jpg" style={{'width': '10px', 'height': '12px'}} />
+            {appData.ext.verify}
+            </p>
           </div>
         </div>
       </div>
@@ -75,7 +86,15 @@ export default async function Apps({ params, searchParams }) {
       }
       </div>
       <div className="install">
-        <a  id="download_addr" className="bg-primary block rounded text-white w-full p-2 text-center" href={makeDownloadURL(searchParams, appData.ext.download)}>Download</a>
+        
+        <a  id="download_addr" className=" relative bg-primary block rounded text-white w-full p-2 text-center overflow-hidden" href={makeDownloadURL(searchParams, appData.ext.download)}>
+          <span className='flex text-center items-center justify-center' style={{'color': '#ffe336'}}>
+            <img className='mt-1 mr-1' src='/ic_sd.png' style={{'width': '12px', 'height': '16px'}} />
+            <span className='text-sm'>Rapid Install</span>
+          </span>
+          <span className=' text-xs'>Download with in 10s</span>
+          <span className=' absolute bg-white inline-block h-full left-0 animate-shiny' style={{'width': '30px', 'top': '-180px'}}></span>
+        </a>
       </div>
       <div className="links text-center flex justify-center mt-5 space-x-5">
       {
