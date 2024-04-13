@@ -11,7 +11,7 @@ export async function getAppData(appId, baseURLPattern) {
     const url = urlPattern.replace("{appId}", appId)
     console.log("request manifest url: ", url)
     try {
-        const res = await fetch(url, { cache: 'force-cache', next: { revalidate: revalidate } });
+        const res = await fetch(url, { next: { revalidate: revalidate } });
         if(!res.ok) {
             return defaultAppData
         }
