@@ -1,8 +1,8 @@
 import Base from "./base"
 
 class AppApi extends Base {
-    async getApp() {
-        return this.get("/manifest.json")
+    async getApp(id) {
+        return this.get(`/api/manifest?appId=${id}`)
     }
 }
 

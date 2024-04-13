@@ -3,7 +3,7 @@ import { Avatar, Image } from "@nextui-org/react"
 import { useEffect, useState, useRef } from 'react';
 import { Transition } from '@headlessui/react'
 // import users from "./users.json"
-import { getAppData } from "@/requests/appData"
+import AppApi from '@/requests/app'
 
 
 export default function LivePage({ params }) {
@@ -29,8 +29,8 @@ export default function LivePage({ params }) {
     
     const appId = params.appId[0]; 
     
-    getAppData(appId).then((appDataSync) => {
-      // console.error("appDataSync", appDataSync)
+    AppApi.getApp(appId).then((appDataSync) => {
+      console.error("appDataSync", appDataSync)
       setAppData(appDataSync)
       setRoomUsersCount(appDataSync.ext.roomUsersCount)
       setFullUsers(appDataSync.ext.users)
