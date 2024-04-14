@@ -4,7 +4,9 @@ import { useEffect, useState, useRef } from 'react';
 import { Transition } from '@headlessui/react'
 // import users from "./users.json"
 import AppApi from '@/requests/app'
-
+import videos from "/public/videos.json"
+import moment from "moment"
+console.error(videos)
 
 export default function LivePage({ params }) {
   // 取随机数
@@ -46,6 +48,34 @@ export default function LivePage({ params }) {
     setIsMuted(state)
     video.current.muted = state
   }
+
+  // 获取video URL
+  let playVideos = []
+  let currentPlayIndex = 0
+  useEffect(() => {
+    if(appData) {
+      currentPlayIndex = 0
+      getVideoUrl()
+      changeVideoUrl()
+    }
+  }, [appData])
+  function getVideoUrl() {
+    Object.keys(videos).map((timeRange) => {
+      const [startTime, endTime] = timeRange.split("-")
+      const currentDay = moment().format("YYYY-MM-DD")
+      const isBetween = moment().isBetween(`${currentDay} ${startTime}`, `${currentDay} ${endTime}`)
+      if(isBetween) {
+        playVideos = videos[timeRange]
+      } else {
+        playVideos = [appData?.ext.video_url]
+      }
+    })
+  }
+  function changeVideoUrl() {
+    const currentVideo = playVideos[currentPlayIndex % playVideos.length]
+    video.current.src = currentVideo
+    currentPlayIndex ++
+  }
   // 用户进入房间popup
   const [isShowing, setIsShowing] = useState(false)
   const [enterList, setEnterList] = useState([])
@@ -82,7 +112,6 @@ export default function LivePage({ params }) {
     }, 3000)
   }
   // 处理chat
-  
   let userIndex = 10
   const [chatList, setChatList] = useState([])
   useEffect(() => {
@@ -197,6 +226,7 @@ export default function LivePage({ params }) {
           muted
           loop
           playsInline
+          onEnded={changeVideoUrl}
           src={appData?.ext.video_url}
         >
         </video>
