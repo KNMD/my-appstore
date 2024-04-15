@@ -50,7 +50,7 @@ export default function LivePage({ params }) {
   }
 
   // 获取video URL
-  let playVideos = []
+  let playVideos = [appData?.ext.video_url]
   let currentPlayIndex = 0
   useEffect(() => {
     if(appData) {
@@ -60,20 +60,21 @@ export default function LivePage({ params }) {
     }
   }, [appData])
   function getVideoUrl() {
-    Object.keys(videos).map((timeRange) => {
+    Object.keys(videos).some((timeRange) => {
       const [startTime, endTime] = timeRange.split("-")
       const currentDay = moment().format("YYYY-MM-DD")
       const isBetween = moment().isBetween(`${currentDay} ${startTime}`, `${currentDay} ${endTime}`)
       if(isBetween) {
         playVideos = videos[timeRange]
-      } else {
-        playVideos = [appData?.ext.video_url]
+        return true
       }
+      return false
     })
   }
   function changeVideoUrl() {
     const currentVideo = playVideos[currentPlayIndex % playVideos.length]
-    video.current.src = currentVideo
+    video.current.src = currentVideo.video_url
+    // console.error('currentVideo:', currentVideo)
     currentPlayIndex ++
   }
   // 用户进入房间popup
@@ -227,7 +228,7 @@ export default function LivePage({ params }) {
           loop
           playsInline
           onEnded={changeVideoUrl}
-          src={appData?.ext.video_url}
+          src=''
         >
         </video>
         <div className="absolute bottom-[10px] left-[20px]">
