@@ -50,7 +50,7 @@ export default function LivePage({ params }) {
   }
 
   // 获取video URL
-  let playVideos = [appData?.ext.video_url]
+  let playVideos = [{"video_url": appData?.ext.video_url}]
   let currentPlayIndex = 0
   useEffect(() => {
     if(appData) {
@@ -60,21 +60,25 @@ export default function LivePage({ params }) {
     }
   }, [appData])
   function getVideoUrl() {
-    Object.keys(videos).some((timeRange) => {
-      const [startTime, endTime] = timeRange.split("-")
-      const currentDay = moment().format("YYYY-MM-DD")
-      const isBetween = moment().isBetween(`${currentDay} ${startTime}`, `${currentDay} ${endTime}`)
-      if(isBetween) {
-        playVideos = videos[timeRange]
-        return true
-      }
-      return false
-    })
+    
+    if (Object.keys(videos).length != 0) {
+      Object.keys(videos).some((timeRange) => {
+        const [startTime, endTime] = timeRange.split("-")
+        const currentDay = moment().format("YYYY-MM-DD")
+        const isBetween = moment().isBetween(`${currentDay} ${startTime}`, `${currentDay} ${endTime}`)
+        if(isBetween) {
+          playVideos = videos[timeRange]
+          return true
+        }
+        return false
+      })
+    }
+    
   }
   function changeVideoUrl() {
     const currentVideo = playVideos[currentPlayIndex % playVideos.length]
     video.current.src = currentVideo.video_url
-    // console.error('currentVideo:', currentVideo)
+    console.error('currentVideo:', currentVideo)
     currentPlayIndex ++
   }
   // 用户进入房间popup
@@ -276,7 +280,7 @@ export default function LivePage({ params }) {
         </div>
         <div className="flex-1 h-[80px] px-[20px] flex items-center">
           <input value={userInput} onInput={e => setUserInput(e.target.value)} onKeyDown={ onInputConfirm } placeholder="Say Somethings ..." className="outline-none px-[18px]
-            w-full bg-[rgba(0,0,0,.5)] h-[40px] rounded-full text-[16px] text-white"/>
+            w-full bg-[rgba(0,0,0,.5)] h-[36px] rounded-full text-[16px] text-white"/>
         </div>
         <div className="bottom-[80px] absolute right-[15px]">
           {
@@ -295,7 +299,7 @@ export default function LivePage({ params }) {
             leaveFrom="scale-100	opacity-100"
             leaveTo="scale-0	opacity-0"
           >
-            <div className="rounded-xl w-[110px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
+            <div className="rounded-xl w-[110px] bg-[#fff] py-[8px] px-[8px] flex flex-col items-center">
               {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
               <Avatar className='w-[60px] h-[60px]' radius="md" src={appData?.ext.remote_icon} />
               <div className="mt-1 text-center">{appData?.name}</div>

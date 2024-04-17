@@ -1,0 +1,12 @@
+{
+    "10:00-11:00": [{
+        "video_url": "https://www.xbext.com/download/trailer.mp4"
+    }, {
+        "video_url": "xxx"
+    }],
+    "12:00-13:00": [{
+        "video_url": "xxx"
+    }, {
+        "video_url": "xxx"
+    }]
+}
