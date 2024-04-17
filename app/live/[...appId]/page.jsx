@@ -200,7 +200,7 @@ export default function LivePage({ params }) {
   return (
     <div ref={page} className="h-[100vh] flex flex-col bg-[url('/bg.png')]">
       <div className="h-[50px] flex justify-between items-center px-[10px]">
-        <div className="flex h-[40px] items-center rounded-full pl-[2px] pr-[20px]">
+        <div className="flex h-[40px] items-center rounded-full pl-[2px] pr-[20px] bg-[rgba(0,0,0,.5)]">
           <Avatar className="w-[36px] h-[36px]" src={appData?.ext.liveRoomInfo.avatarUrl} />
           <div className="text-white flex flex-col ml-[6px]">
             <span className="font-bold text-[12px] leading-[16px]">{appData?.ext.liveRoomInfo.nickname}</span>
@@ -215,7 +215,7 @@ export default function LivePage({ params }) {
               )
             })
           }
-          <Avatar size="sm" className="text-white bg-[#333] opacity-60" name={ String(roomUsersCount) } />
+          <Avatar size="sm" className="text-white bg-[rgba(0,0,0,.3)]" name={ String(roomUsersCount) } />
         </div>
       </div>
       <div className="relative">
@@ -266,7 +266,7 @@ export default function LivePage({ params }) {
               return (
                 <div key={index} className="mb-[10px] flex">
                   <Avatar src={ item.avatarUrl } className="w-[34px] h-[34px] min-w-[34px]"/>
-                  <div className="bg-[#2e3e4e] break-word text-white ml-2 p-2 rounded-lg w-[fit-content]">
+                  <div className="bg-[rgba(0,0,0,.4)] text-[13px] break-word text-white ml-2 p-2 rounded-lg w-[fit-content]">
                     { item.msg }
                   </div>
                 </div>
@@ -275,14 +275,14 @@ export default function LivePage({ params }) {
           }
         </div>
         <div className="flex-1 h-[80px] px-[20px] flex items-center">
-          <input value={userInput} onInput={e => setUserInput(e.target.value)} onKeyDown={ onInputConfirm } placeholder="Say Somethings ..." className="outline-none px-[15px]
-            w-full bg-[#201c1b] h-[50px] rounded-full text-[16px] text-white"/>
+          <input value={userInput} onInput={e => setUserInput(e.target.value)} onKeyDown={ onInputConfirm } placeholder="Say Somethings ..." className="outline-none px-[18px]
+            w-full bg-[rgba(0,0,0,.5)] h-[40px] rounded-full text-[16px] text-white"/>
         </div>
         <div className="bottom-[80px] absolute right-[15px]">
           {
             showDwnloadNumber && <div className="bg-gradient-to-r from-[rgba(233,149,59,1)] to-[rgba(233,149,59,0)]
-            rounded-full h-[40px] text-[#fff] flex items-center justify-center text-[13px] mb-[10px]">
-              <Avatar src="/fire.svg" className="bg-[transparent] w-[23px] h-[23px]"/>
+            rounded-full h-[36px] text-[#fff] flex items-center justify-center text-[12px] mb-[10px]">
+              <Avatar src="/fire.svg" className="bg-[transparent] w-[20px] h-[20px]"/>
               <span className="ml-[2px]">{ appData?.ext.downloadNumber || 566 } Download</span>
             </div>
           }
@@ -295,10 +295,10 @@ export default function LivePage({ params }) {
             leaveFrom="scale-100	opacity-100"
             leaveTo="scale-0	opacity-0"
           >
-            <div className="rounded-xl w-[130px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
+            <div className="rounded-xl w-[110px] bg-[#fff] py-[10px] px-[15px] flex flex-col items-center">
               {/* <Image src='https://i.pravatar.cc/150?u=a042581f4e29026024d'></Image> */}
-              <Avatar className='w-[80px] h-[80px]' radius="md" src={appData?.ext.remote_icon} />
-              <div className="mt-1">{appData?.name}</div>
+              <Avatar className='w-[60px] h-[60px]' radius="md" src={appData?.ext.remote_icon} />
+              <div className="mt-1 text-center">{appData?.name}</div>
               <div className="text-[11px]">{appData?.ext.company}</div>
               <div onClick={ downloadApk } className="active:opacity-70 text-white bg-[#cb352d] rounded-md w-full py-[4px] text-center mt-1 text-[12px]">Download</div>
             </div>
