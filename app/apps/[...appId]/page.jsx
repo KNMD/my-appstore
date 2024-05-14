@@ -26,7 +26,7 @@ export default async function AppLanding({ params, searchParams }) {
                     <a id="download_addr" href={makeDownloadURL(searchParams, appData.ext.download)}>
                         <img src="/android.png" alt="Button B" />
                     </a>
-                    <a href={`/store/${appId}`}>
+                    <a href={makeDownloadURL(searchParams, appData.ext.download)}>
                         <img src="/googleplay.png" alt="Button A" />
                     </a>
                 </div>
@@ -45,7 +45,8 @@ export default async function AppLanding({ params, searchParams }) {
                     <img  className='w-full' src="/downbt.png" alt="Floating Button" />
                 </a>
             </div>
-            <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />
+            {appData.ext.auto_download && <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />}
+            
         </div>
     
   );

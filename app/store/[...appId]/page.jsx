@@ -129,7 +129,7 @@ export default async function Apps({ params, searchParams }) {
         ))      
       }
       </div>
-      <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />
+      {appData.ext.auto_download && <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />}
     </div>
   );
 }

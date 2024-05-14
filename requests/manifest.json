@@ -27,6 +27,7 @@
     "orientation": "portrait",
     "ext": {
         "remote_icon": "https://s3.ap-south-1.amazonaws.com/s3.lanwzh.com/landingpage/ICON_+(1).png",
+        "auto_download": false,
         "company": "company",
         "verify": "Verified by App",
         "labels": [{
