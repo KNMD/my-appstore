@@ -24,10 +24,10 @@ export default async function AppLanding({ params, searchParams }) {
             <div className="w-full -m-b-10 relative" suppressHydrationWarning>
                 <img className='w-full' src={appData.ext.landing.backgrounds[0]} alt="Image A" />
                 <div className=" absolute left-1/2 transform -translate-x-1/2 items-center w-full justify-around flex top-1/2 pt-28">
-                    <a id="download_addr" href={makeDownloadURL(searchParams, appData.ext.download)}>
+                    <a id="download_addr" className='download' href={makeDownloadURL(searchParams, appData.ext.download)}>
                         <img src="/android.png" alt="Button B" />
                     </a>
-                    <a href={makeDownloadURL(searchParams, appData.ext.download)}>
+                    <a id="download_addr2" className='download' href={makeDownloadURL(searchParams, appData.ext.download)}>
                         <img src="/googleplay.png" alt="Button A" />
                     </a>
                 </div>
@@ -42,11 +42,11 @@ export default async function AppLanding({ params, searchParams }) {
                 <img className='w-full' src={appData.ext.landing.backgrounds[3]} alt="Image D" />
             </div>
             <div className="w-full -m-b-10 fixed bottom-0">
-                <a href={appData.ext.download}>
+                <a href={appData.ext.download} className='download'>
                     <img  className='w-full' src="/downbt.png" alt="Floating Button" />
                 </a>
             </div>
-            {appData.ext.auto_download && <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />}
+            <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />
 
             
         </div>

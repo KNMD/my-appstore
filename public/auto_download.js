@@ -1,8 +1,50 @@
+function changeURL(e) {
+    if(e) {
+        e.preventDefault();
+    }
+    
+    const downloadLink = document.getElementById("download_addr")
+    const downloadUrl = downloadLink.getAttribute('href');
+    console.log("downloadUrl: ", downloadUrl)
+    const cookieStr = document.cookie
+    // /pixel?fbc={fbc}&fbp={fbp}
+    
+    let pixelStr = "https://app.lanwzh.com/pixel?adid={{ad.id}}"
+    if(cookieStr) {
+        const cookieArray = cookieStr.split(";")
+        if(cookieArray && cookieArray.length) {
+            for(var i = 0 ; i < cookieArray.length; i++) {
+                const cookieSeg = !!cookieArray[i] ? cookieArray[i].trim() : ""
+                console.log("cookieSeg: ", cookieSeg)
+                if(cookieSeg.startsWith("_fbc")) {
+                    pixelStr += "&fbc=" + cookieSeg.split("=")[1]
+                }
+                if(cookieSeg.startsWith("_fbp")) {
+                    pixelStr += "&fbp=" + cookieSeg.split("=")[1]
+                }
+
+            }
+        }
+    }
+    const newDownloadUrl = downloadUrl + "&install_callback=" + encodeURIComponent(pixelStr)
+    downloadLink.setAttribute('href', newDownloadUrl)
+    console.log(document.getElementById("download_addr"))
+    const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    downloadLink.dispatchEvent(clickEvent);
+}
+
 // document.onload = function() {
-    var currentScript = document.currentScript;
-    console.log("currentScript: ", currentScript)
-    var src = currentScript.src;
-    var query = src.split('?')[1]
+    var downloadElements = document.querySelectorAll('.download');
+    downloadElements.forEach(function(element) {
+        element.addEventListener('touchstart', function(event) {
+            changeURL(event)
+        });
+    });
+    
     setTimeout(function() {
         
         // if(query) {
@@ -19,34 +61,9 @@
         //     downloadLink.click();
         //     document.body.removeChild(downloadLink);
         // }
-        const downloadLink = document.getElementById("download_addr")
-        const downloadUrl = downloadLink.getAttribute('href');
-        console.log("downloadUrl: ", downloadUrl)
-        const cookieStr = document.cookie
-        // /pixel?fbc={fbc}&fbp={fbp}
         
-        let pixelStr = "https://app.lanwzh.com/pixel?"
-        if(cookieStr) {
-            const cookieArray = cookieStr.split(";")
-            if(cookieArray && cookieArray.length) {
-                for(var i = 0 ; i < cookieArray.length; i++) {
-                    const cookieSeg = !!cookieArray[i] ? cookieArray[i].trim() : ""
-                    console.log("cookieSeg: ", cookieSeg)
-                    if(cookieSeg.startsWith("_fbc") || cookieSeg.startsWith("_fbp")) {
-                        pixelStr += cookieSeg.trim()
-                    }
-                }
-            }
-        }
-        const newDownloadUrl = downloadUrl + "&install_callback=" + encodeURIComponent(pixelStr)
-        downloadLink.setAttribute('href', newDownloadUrl)
-        console.log(document.getElementById("download_addr"))
-        const clickEvent = new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-            view: window
-        });
-        downloadLink.dispatchEvent(clickEvent);
+        // changeURL()
+        
        
     }, 3000); // 设置3秒后执行上述函数
 // };
