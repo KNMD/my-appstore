@@ -1,5 +1,5 @@
 
-
+import Script from 'next/script'
 export default function AppLandingLayout({
   children,
 }) {
@@ -11,6 +11,7 @@ export default function AppLandingLayout({
       <body>
       {children}
       </body>
+      <Script src="/scripts.js"></Script>
     </html>
   );
 }

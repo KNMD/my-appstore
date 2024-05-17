@@ -1,6 +1,6 @@
 
 import Navbar from "../../components/navbar";
-
+import Script from 'next/script'
 export default function AppsLayout({
   children,
 }) {
@@ -14,6 +14,7 @@ export default function AppsLayout({
           </div>
         </div>
       </body>
+      <Script src="/scripts.js"></Script>
     </html>
   );
 }

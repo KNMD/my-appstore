@@ -46,6 +46,7 @@ export default async function AppLanding({ params, searchParams }) {
                 </a>
             </div>
             {appData.ext.auto_download && <Script src={`/auto_download.js?dl=${encodeURIComponent(appData.ext.download)}`} />}
+
             
         </div>
     
