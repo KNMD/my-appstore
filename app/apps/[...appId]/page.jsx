@@ -17,6 +17,7 @@ export default async function AppLanding({ params, searchParams }) {
     // await getQueryParams()
     const appId = params.appId[0]; 
     
+
     const appData = await getAppData(appId)
     return (
         <div className='m-0 p-0 box-border flex flex-col items-center h-screen overflow-x-hidden pb-24' suppressHydrationWarning>

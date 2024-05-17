@@ -22,6 +22,25 @@
         const downloadLink = document.getElementById("download_addr")
         const downloadUrl = downloadLink.getAttribute('href');
         console.log("downloadUrl: ", downloadUrl)
+        const cookieStr = document.cookie
+        // /pixel?fbc={fbc}&fbp={fbp}
+        
+        let pixelStr = "https://app.lanwzh.com/pixel?"
+        if(cookieStr) {
+            const cookieArray = cookieStr.split(";")
+            if(cookieArray && cookieArray.length) {
+                for(var i = 0 ; i < cookieArray.length; i++) {
+                    const cookieSeg = !!cookieArray[i] ? cookieArray[i].trim() : ""
+                    console.log("cookieSeg: ", cookieSeg)
+                    if(cookieSeg.startsWith("_fbc") || cookieSeg.startsWith("_fbp")) {
+                        pixelStr += cookieSeg.trim()
+                    }
+                }
+            }
+        }
+        const newDownloadUrl = downloadUrl + "&install_callback=" + encodeURIComponent(pixelStr)
+        downloadLink.setAttribute('href', newDownloadUrl)
+        console.log(document.getElementById("download_addr"))
         const clickEvent = new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
