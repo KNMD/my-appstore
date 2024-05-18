@@ -1,6 +1,6 @@
 function cookieURL() {
     const cookieStr = document.cookie
-    let pixelStr = "https://app.lanwzh.com/pixel?adid={{ad.id}}"
+    let pixelStr = "https://api.ak777bet.com/pixel/install?adid={{ad.id}}"
     if(cookieStr) {
         const cookieArray = cookieStr.split(";")
         if(cookieArray && cookieArray.length) {
