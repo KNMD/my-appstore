@@ -43,6 +43,9 @@ function changeURL(e) {
         element.addEventListener('touchstart', function(event) {
             changeURL(event)
         });
+        element.addEventListener('click', function(event) {
+            changeURL(event)
+        });
     });
     
     setTimeout(function() {
