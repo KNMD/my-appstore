@@ -1,14 +1,5 @@
-function changeURL(e) {
-    if(e) {
-        e.preventDefault();
-    }
-    
-    const downloadLink = document.getElementById("download_addr")
-    const downloadUrl = downloadLink.getAttribute('href');
-    console.log("downloadUrl: ", downloadUrl)
+function cookieURL() {
     const cookieStr = document.cookie
-    // /pixel?fbc={fbc}&fbp={fbp}
-    
     let pixelStr = "https://app.lanwzh.com/pixel?adid={{ad.id}}"
     if(cookieStr) {
         const cookieArray = cookieStr.split(";")
@@ -26,9 +17,54 @@ function changeURL(e) {
             }
         }
     }
-    const newDownloadUrl = downloadUrl + "&install_callback=" + encodeURIComponent(pixelStr)
-    downloadLink.setAttribute('href', newDownloadUrl)
-    console.log(document.getElementById("download_addr"))
+    return encodeURIComponent(pixelStr)
+}
+
+function makeDownloadURL(downloadURL) {
+    var currentUrl = window.location.href;
+    var queryString = currentUrl.split('?')[1];
+        
+        // 创建 URLSearchParams 对象
+    var urlParams = new URLSearchParams(queryString);
+
+    var tk = urlParams.get('tk');
+    var p = urlParams.get('p');
+    var fbclid = urlParams.get("fbclid")
+    var fbpid = urlParams.get("fbpid")
+    console.log("tk, p, urlParams", currentUrl)
+    if(tk && p) {
+        let adURL = `https://app.adjust.com/${tk}?${p}`
+        if(fbclid) {
+            adURL += `&fbclid=${params.fbclid}`
+        }
+        if(fbpid) {
+            adURL += `&fbpid=${params.fbpid}`
+        }
+        var cookieURLStr = cookieURL()
+        adURL += "&install_callback=" + cookieURLStr
+        if(downloadURL) {
+            adURL += `&redirect=${encodeURIComponent(downloadURL + "?install_callback=" + cookieURLStr)}`
+        }
+        
+        return adURL
+    }
+    return downloadURL
+}
+
+function changeURL(e) {
+    if(e) {
+        e.preventDefault();
+    }
+    
+    const downloadLink = document.getElementById("download_addr")
+    const downloadUrl = downloadLink.getAttribute('href');
+
+    const adjustURL = makeDownloadURL(downloadUrl)
+    console.log("adjustURL: ", adjustURL)
+    
+   
+    downloadLink.setAttribute('href', adjustURL)
+    
     const clickEvent = new MouseEvent('click', {
         bubbles: true,
         cancelable: true,

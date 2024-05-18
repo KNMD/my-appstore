@@ -87,7 +87,7 @@ export default async function Apps({ params, searchParams }) {
       </div>
       <div className="install">
         
-        <a  id="download_addr" className="download relative bg-primary block rounded text-white w-full p-2 text-center overflow-hidden" href={makeDownloadURL(searchParams, appData.ext.download)}>
+        <a  id="download_addr" className="download relative bg-primary block rounded text-white w-full p-2 text-center overflow-hidden" href={appData.ext.download}>
           <span className='flex text-center items-center justify-center' style={{'color': '#ffe336'}}>
             <img className='mt-1 mr-1' src='/ic_sd.png' style={{'width': '12px', 'height': '16px'}} />
             <span className='text-sm'>Rapid Install</span>
