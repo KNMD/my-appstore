@@ -35,10 +35,10 @@ function makeDownloadURL(downloadURL) {
     if(tk && p) {
         let adURL = `https://app.adjust.com/${tk}?${p}`
         if(fbclid) {
-            adURL += `&fbclid=${params.fbclid}`
+            adURL += `&fbclid=${fbclid}`
         }
         if(fbpid) {
-            adURL += `&fbpid=${params.fbpid}`
+            adURL += `&fbpid=${fbpid}`
         }
         var cookieURLStr = cookieURL()
         adURL += "&install_callback=" + cookieURLStr
